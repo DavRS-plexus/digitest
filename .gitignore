@@ -3,7 +3,6 @@
 build/
 .kotlin/
 gradle/gradle-daemon-jvm.properties
-gradle/wrapper/gradle-wrapper.jar
 
 # Local configuration file (sdk path, etc)
 local.properties
