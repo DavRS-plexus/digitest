@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Poketest"
+rootProject.name = "Digitest"
 
 // App Module
 include(":app")
