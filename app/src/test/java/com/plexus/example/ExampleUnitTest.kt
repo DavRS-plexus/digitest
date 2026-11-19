@@ -1,4 +1,4 @@
-package com.example.technical
+package com.plexus.example
 
 import org.junit.Test
 

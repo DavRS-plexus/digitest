@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.technical"
+    namespace = "com.plexus.example"
 
     compileSdk {
         version = release(37) {
@@ -13,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.technical"
+        applicationId = "com.plexus.example"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
