@@ -40,7 +40,10 @@ rootProject.name = "Digitest"
 include(":app")
 
 // Core Modules
-// ...
+include(":core:theme")
+include(":core:resources")
+include(":core:navigation")
+include(":core:error")
 
 // Features Modules
 // ...
