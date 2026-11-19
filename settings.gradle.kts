@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("plugins")
     repositories {
         google {
             content {
@@ -35,5 +36,6 @@ include(":app")
 // ...
 
 // Libs Modules
-// ...
+include(":libs:android-utils")
+include(":libs:kotlin-utils")
  
