@@ -1,25 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("android.config")
 }
 
 android {
     namespace = "com.plexus.example"
 
-    compileSdk {
-        version = release(37) {
-            minorApiLevel = 1
-        }
-    }
-
     defaultConfig {
-        applicationId = "com.plexus.example"
-        minSdk = 24
-        targetSdk = 37
+        applicationId = "com.plexus.example.poketest"
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -32,14 +23,14 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_11
+//        targetCompatibility = JavaVersion.VERSION_11
+//    }
 
-    buildFeatures {
-        compose = true
-    }
+//    buildFeatures {
+//        compose = true
+//    }
 }
 
 dependencies {

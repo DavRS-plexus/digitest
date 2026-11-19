@@ -14,7 +14,3 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
-
-dependencies {
-    implementation("androidx.annotation:annotation-jvm:1.10.0")
-}

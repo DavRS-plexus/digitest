@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("plugins")
     repositories {
         google {
             content {
@@ -11,6 +10,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    // Shared build config
+    includeBuild("build-logic")
 }
 // TODO: remove
 //plugins {
@@ -22,9 +24,17 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
+    versionCatalogs {
+        create("libs") {
+            from(files("build-logic/config/libs.versions.toml"))
+        }
+    }
 }
 
 rootProject.name = "Digitest"
+
+//includeBuild("build-logic")
 
 // App Module
 include(":app")
