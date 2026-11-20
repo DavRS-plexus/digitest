@@ -1,4 +1,4 @@
-package com.plexus.example
+package com.plexus.example.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,36 +12,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.plexus.example.core.theme.AppTheme
+import com.plexus.example.navigation.NavigationManager
 
 class MainActivity : ComponentActivity() {
+
+    //TODO: Inject:
+    private val navigationManager = NavigationManager()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainApp(navigationManager = navigationManager)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AppTheme {
-        Greeting("Android")
     }
 }

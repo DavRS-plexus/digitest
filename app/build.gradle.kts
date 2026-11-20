@@ -34,8 +34,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:navigation"))
     implementation(project(":core:resources"))
     implementation(project(":core:theme"))
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
 
     // Koin DI
     implementation(platform(libs.koin.bom))

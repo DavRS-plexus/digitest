@@ -1,6 +1,5 @@
 plugins {
-    id("com.android.library")
-    id("config.android")
+    id("android.dependencies")
 }
 
 android {

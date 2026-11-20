@@ -34,8 +34,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Digitest"
 
-//includeBuild("build-logic")
-
 // App Module
 include(":app")
 
