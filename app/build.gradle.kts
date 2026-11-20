@@ -1,25 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
+    id("com.android.application")
+    id("config.android")
+    id("config.compose")
 }
 
 android {
-    namespace = "com.example.technical"
-
-    compileSdk {
-        version = release(37) {
-            minorApiLevel = 1
-        }
-    }
+    namespace = "com.plexus.example"
 
     defaultConfig {
-        applicationId = "com.example.technical"
-        minSdk = 24
-        targetSdk = 37
+        applicationId = "com.plexus.example.poketest"
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -32,17 +23,31 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_11
+//        targetCompatibility = JavaVersion.VERSION_11
+//    }
 
-    buildFeatures {
-        compose = true
-    }
+//    buildFeatures {
+//        compose = true
+//    }
 }
 
 dependencies {
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
+
+    // Koin DI
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+
+    implementation(project(":core:network"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:resources"))
+    implementation(project(":core:theme"))
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
