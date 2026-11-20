@@ -34,9 +34,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:navigation"))
-    implementation(project(":core:resources"))
-    implementation(project(":core:theme"))
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
@@ -45,6 +42,11 @@ dependencies {
     // Koin DI
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
+
+    implementation(project(":core:network"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:resources"))
+    implementation(project(":core:theme"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

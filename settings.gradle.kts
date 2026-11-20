@@ -42,6 +42,7 @@ include(":core:theme")
 include(":core:resources")
 include(":core:navigation")
 include(":core:error")
+include(":core:network")
 
 // Features Modules
 // ...

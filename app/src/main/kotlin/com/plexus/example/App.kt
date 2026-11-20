@@ -1,6 +1,7 @@
 package com.plexus.example
 
 import android.app.Application
+import com.plexus.example.core.network.networkModule
 import com.plexus.example.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,7 +18,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(appModule)
+            modules(appModule, networkModule)
         }
     }
 }
