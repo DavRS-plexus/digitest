@@ -15,5 +15,6 @@ https://composables.com/android-distribution-chart
     * core
     * features
     * libs
-  
+
+* DI = Koin (with compiler plugin)
 * UNIT TEST

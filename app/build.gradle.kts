@@ -37,6 +37,10 @@ dependencies {
     implementation(project(":core:resources"))
     implementation(project(":core:theme"))
 
+    // Koin DI
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
