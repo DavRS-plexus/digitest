@@ -6,7 +6,6 @@ fun configureAndroid() {
         defaultConfig.minSdk = 28
         defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" // TODO: review
         buildFeatures.buildConfig = true
-        buildFeatures.compose = true
     }
 }
 

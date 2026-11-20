@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
-    id("android.config")
+    id("config.android")
+    id("config.compose")
 }
 
 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")

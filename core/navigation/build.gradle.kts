@@ -1,6 +1,6 @@
 plugins {
-    id("android.dependencies")
-    alias(libs.plugins.kotlin.compose)
+    id("com.android.library")
+    id("config.android")
 }
 
 android {

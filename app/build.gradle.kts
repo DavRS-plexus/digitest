@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
-    id("android.config")
+    id("com.android.application")
+    id("config.android")
+    id("config.compose")
 }
 
 android {
