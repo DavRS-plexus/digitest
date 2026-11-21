@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.SubcomposeAsyncImage
 import com.plexus.example.core.resources.R
@@ -54,6 +55,7 @@ private fun StateFailure(errorMessage: String?) {
         text = stringResource(R.string.digimon_detail_error, errorMessage ?: ""),
         style = LocalTypography.bodyMedium,
         color = LocalCustomColors.current.error,
+        textAlign = TextAlign.Center,
         modifier = Modifier.padding(Spacing.spacing_04),
     )
 }
@@ -116,6 +118,8 @@ private fun DetailField(label: String, values: List<String>) {
 // region Previews
 
 @Preview(name = "Detail", showBackground = true)
+@Preview(name = "Detail - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Detail - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceDetailPreview() {
     AppTheme(dynamicColor = false) {
@@ -136,6 +140,8 @@ private fun DigiviceDetailPreview() {
 }
 
 @Preview(name = "Loading", showBackground = true)
+@Preview(name = "Loading - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Loading - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceDetailLoadingPreview() {
     AppTheme(dynamicColor = false) {
@@ -144,6 +150,8 @@ private fun DigiviceDetailLoadingPreview() {
 }
 
 @Preview(name = "Blank detail fields", showBackground = true)
+@Preview(name = "Blank detail fields - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Blank detail fields - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceDetailBlankFieldsPreview() {
     AppTheme(dynamicColor = false) {
@@ -164,6 +172,8 @@ private fun DigiviceDetailBlankFieldsPreview() {
 }
 
 @Preview(name = "Error", showBackground = true)
+@Preview(name = "Error - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Error - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceDetailErrorPreview() {
     AppTheme(dynamicColor = false) {

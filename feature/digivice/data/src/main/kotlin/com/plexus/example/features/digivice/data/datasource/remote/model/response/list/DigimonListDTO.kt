@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 
 @Keep
 data class DigimonListDTO(
-    val content: List<DigimonDTO>,
+    val content: List<DigimonDTO>? = null,
     val pageable: PaginationDTO,
 )
 

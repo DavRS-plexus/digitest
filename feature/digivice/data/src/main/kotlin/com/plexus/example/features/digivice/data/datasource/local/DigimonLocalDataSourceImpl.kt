@@ -25,7 +25,9 @@ internal class DigimonLocalDataSourceImpl(
     }
 
     override suspend fun saveDigimonList(name: String, data: DigimonSearchDataModel) {
-        localStorageManager.save(key(name), data, expireTimeNanos)
+        runCatching {
+            localStorageManager.save(key(name), data, expireTimeNanos)
+        }
     }
 
     private fun key(name: String) = SEARCH_KEY.suffix(name)

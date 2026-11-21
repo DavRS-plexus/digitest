@@ -5,7 +5,7 @@ fun configureAndroid() {
         compileSdk = 37
         compileSdkMinor = 1
         defaultConfig.minSdk = 28
-        defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" // TODO: review
+        defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildFeatures.buildConfig = true
     }
 }
