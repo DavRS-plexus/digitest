@@ -1,9 +1,4 @@
 plugins {
-    id("kotlin.library")
+    id("kotlin.data")
     alias(libs.plugins.koin.compiler)
-}
-
-dependencies {
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
 }

@@ -40,7 +40,6 @@ include(":core:error:domain")
 include(":core:navigation")
 include(":core:network")
 include(":core:resources")
-include(":core:storage")
 include(":core:storage:data")
 include(":core:theme")
 

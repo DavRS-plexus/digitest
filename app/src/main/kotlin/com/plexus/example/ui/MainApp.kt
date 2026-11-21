@@ -18,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.plexus.example.core.resources.R
 import com.plexus.example.core.theme.color.LocalCustomColors
+import com.plexus.example.core.theme.font.LocalTypography
 import com.plexus.example.navigation.MainNavHost
 import com.plexus.example.navigation.NavigationManager
 
@@ -27,13 +28,6 @@ fun MainApp(
 ) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
-
-    // Get current back stack entry
-//    val backStackEntry by navController.currentBackStackEntryAsState()
-//    // Get the name of the current screen
-//    val currentScreen = CupcakeScreen.valueOf(
-//        backStackEntry?.destination?.route ?: CupcakeScreen.Start.name
-//    )
 
     Scaffold(
         topBar = {
@@ -57,7 +51,7 @@ private fun TopBar(
     navigateUp: () -> Unit
 ) {
     TopAppBar(
-        title = { Text("HOLA") },
+        title = { Text(stringResource(R.string.app_name), style = LocalTypography.headlineSmall) },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = LocalCustomColors.current.topBarContainerColor,
             titleContentColor = LocalCustomColors.current.topBarTitleContentColor,
