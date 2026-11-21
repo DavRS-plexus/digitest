@@ -44,7 +44,6 @@ internal class DigimonRepositoryImpl(
             if (localData != null) {
                 emit(Either.success(localData.toDomain()))
             } else {
-                delay(5000)
                 emit(
                     remoteDataSource.searchDigimon(name).map(
                         onSuccess = {

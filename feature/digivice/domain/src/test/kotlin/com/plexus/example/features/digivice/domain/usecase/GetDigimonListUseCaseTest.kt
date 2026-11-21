@@ -9,6 +9,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import java.io.IOException
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -33,10 +34,10 @@ class GetDigimonListUseCaseTest {
         coEvery { repository.getDigimonList() } returns flowOf(Either.Success(digimons))
 
         // WHEN
-        val result = useCase().toList()
+        val result = useCase().single()
 
         // THEN
-        assertEquals(listOf(Either.Success(digimons)), result)
+        assertEquals(Either.Success(digimons), result)
         coVerify(exactly = 1) { repository.getDigimonList() }
     }
 
@@ -47,10 +48,10 @@ class GetDigimonListUseCaseTest {
         coEvery { repository.getDigimonList() } returns flowOf(Either.Failure(error))
 
         // WHEN
-        val result = useCase().toList()
+        val result = useCase().single()
 
         // THEN
-        assertEquals(listOf(Either.Failure(error)), result)
+        assertEquals(Either.Failure(error), result)
         coVerify(exactly = 1) { repository.getDigimonList() }
     }
 
