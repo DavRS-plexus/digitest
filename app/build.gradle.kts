@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":core:theme"))
 
     // Features
+    implementation(project(":feature:home:ui"))
     implementation(project(":feature:digivice:data"))
     implementation(project(":feature:digivice:domain"))
     implementation(project(":feature:digivice:ui"))

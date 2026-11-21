@@ -44,6 +44,7 @@ include(":core:storage:data")
 include(":core:theme")
 
 // Features Modules
+include(":feature:home:ui")
 include(":feature:digivice:data")
 include(":feature:digivice:domain")
 include(":feature:digivice:ui")

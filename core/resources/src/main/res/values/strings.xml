@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Digitest</string>
     <string name="back_button">Back</string>
+    <string name="home_welcome">Welcome to the Digital World!</string>
+    <string name="home_start">Start</string>
     <string name="digivice_search_empty">No Digimon found</string>
     <string name="digivice_search_error">An error occurred: %1$s</string>
     <string name="digivice_search_name">Digimon name</string>

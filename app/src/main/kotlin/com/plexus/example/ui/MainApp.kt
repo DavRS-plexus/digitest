@@ -2,30 +2,24 @@ package com.plexus.example.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.plexus.example.core.resources.R
 import com.plexus.example.core.theme.color.LocalCustomColors
 import com.plexus.example.core.theme.font.LocalTypography
 import com.plexus.example.navigation.MainNavHost
-import com.plexus.example.navigation.NavigationManager
 
 @Composable
-fun MainApp(
-    navigationManager: NavigationManager
-) {
+fun MainApp() {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
 
@@ -39,8 +33,7 @@ fun MainApp(
     ) { innerPadding ->
         MainNavHost(
             innerPadding = innerPadding,
-            navController = navController,
-            navigationManager = navigationManager
+            navController = navController
         )
     }
 }
