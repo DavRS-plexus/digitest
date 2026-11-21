@@ -9,7 +9,7 @@ import com.plexus.example.navigation.NavigationManager
 
 class MainActivity : ComponentActivity() {
 
-    //TODO: Inject:
+    // TODO: Inject:
     private val navigationManager = NavigationManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {

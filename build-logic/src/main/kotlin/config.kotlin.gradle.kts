@@ -26,6 +26,9 @@ dependencies {
     testImplementation(libs.findLibrary("kotlinx-coroutines-test").get())
 }
 
-tasks.test {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+    testLogging {
+        events("started", "passed", "skipped", "failed")
+    }
 }

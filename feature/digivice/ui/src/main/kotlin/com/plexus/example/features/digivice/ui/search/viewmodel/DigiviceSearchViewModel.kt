@@ -10,8 +10,8 @@ import com.plexus.example.features.digivice.ui.search.mapper.toUi
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiEvent
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiEvent.*
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiState
-import com.plexus.example.libs.androidutils.extensions.launchIO
 import com.plexus.example.libs.kotlinutils.Either
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 internal class DigiviceSearchViewModel(
     private val getDigimonListUseCase: GetDigimonListUseCase,
     private val searchDigimonUseCase: SearchDigimonUseCase,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(DigiviceSearchUiState(isLoading = true))
     val uiState: StateFlow<DigiviceSearchUiState> = _uiState.asStateFlow()
@@ -43,7 +44,7 @@ internal class DigiviceSearchViewModel(
     private fun getDigimonList() {
         _uiState.value = DigiviceSearchUiState(isLoading = true)
 
-        searchJob = viewModelScope.launch(Dispatchers.IO) {
+        searchJob = viewModelScope.launch(dispatcher) {
             getDigimonListUseCase().collect { result ->
                 when (result) {
                     is Either.Success -> handleSuccessGetDigimonList(result.data)
@@ -87,7 +88,7 @@ internal class DigiviceSearchViewModel(
     private fun searchDigimon(name: String) {
         _uiState.value = DigiviceSearchUiState(isLoading = true)
 
-        searchJob = launchIO {
+        searchJob = viewModelScope.launch(dispatcher) {
             searchDigimonUseCase(name).collect { result ->
                 when (result) {
                     is Either.Success -> handleSuccessGetDigimonList(result.data.digimons)
@@ -103,7 +104,7 @@ internal class DigiviceSearchViewModel(
         when (action) {
             is UserAction.OnClickSearch -> checkQuery(action.name)
             is UserAction.OnClickItem -> {
-                launchIO {
+                viewModelScope.launch(dispatcher) {
                     _uiEvent.emit(NavigateToDetail(action.id))
                 }
             }
