@@ -7,7 +7,6 @@ plugins {
 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 dependencies {
-//    implementation(libs.findLibrary("androidx-annotation-jvm").get())
 
     // Koin
     implementation(libs.findLibrary("koin-androidx-compose").get())

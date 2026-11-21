@@ -13,6 +13,12 @@ dependencies {
     implementation(project(":libs:kotlin-utils"))
 
 
-    testImplementation(libs.junit)
+//    testImplementation(libs.junit)
     testImplementation(libs.gson)
+    testRuntimeOnly(libs.junit.vintage.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

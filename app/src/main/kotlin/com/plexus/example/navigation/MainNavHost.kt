@@ -23,8 +23,7 @@ fun MainNavHost(
             .fillMaxSize()
             .padding(innerPadding)
     ) {
-        // Each feature registers its own graph
-        // :app ONLY calls these functions - doesn't know about internal screens
+        // NavGraphs of every feature
         digiviceNavGraph(navController = navController, navigationManager = navigationManager)
     }
 }
