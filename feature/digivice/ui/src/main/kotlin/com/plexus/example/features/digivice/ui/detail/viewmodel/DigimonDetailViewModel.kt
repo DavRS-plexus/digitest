@@ -8,10 +8,9 @@ import com.plexus.example.features.digivice.domain.model.DigimonDetailModel
 import com.plexus.example.features.digivice.domain.usecase.GetDigimonDetailUseCase
 import com.plexus.example.features.digivice.ui.detail.mapper.toUi
 import com.plexus.example.features.digivice.ui.detail.state.DigimonDetailUiState
-import com.plexus.example.features.digivice.ui.navigation.DigiviceInternalRoute
+import com.plexus.example.features.digivice.ui.navigation.DigiviceInternalRoute.DigiviceDetailRoute
 import com.plexus.example.libs.androidutils.extensions.launchIO
 import com.plexus.example.libs.kotlinutils.Either
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -24,8 +23,7 @@ internal class DigimonDetailViewModel(
 
 
     init {
-        val digimonId =
-            savedStateHandle.toRoute<DigiviceInternalRoute.DigiviceDetailRoute>().digimonId
+        val digimonId = savedStateHandle.toRoute<DigiviceDetailRoute>().digimonId
         getDigimonDetail(digimonId)
     }
 

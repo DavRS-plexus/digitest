@@ -8,7 +8,7 @@ android {
     namespace = "com.plexus.example"
 
     defaultConfig {
-        applicationId = "com.plexus.example.poketest"
+        applicationId = "com.plexus.example.digitest"
         versionCode = 1
         versionName = "1.0"
     }

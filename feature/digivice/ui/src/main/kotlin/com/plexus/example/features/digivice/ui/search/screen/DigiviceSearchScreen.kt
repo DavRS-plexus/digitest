@@ -36,15 +36,15 @@ import com.plexus.example.core.theme.AppTheme
 import com.plexus.example.core.theme.color.LocalCustomColors
 import com.plexus.example.core.theme.dimen.Size
 import com.plexus.example.core.theme.dimen.Spacing
+import com.plexus.example.core.theme.font.LocalTypography
 import com.plexus.example.features.digivice.ui.search.model.DigimonItemUiModel
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiState
 
 @Composable
 internal fun DigiviceSearchScreen(
     uiState: DigiviceSearchUiState,
-    onBack: () -> Unit,
     onClickItem: (digimonId: String) -> Unit,
-    onClickSearch: (String) -> Unit,
+    onClickSearch: (name: String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -96,14 +96,21 @@ private fun TopSearch(onClickSearch: (String) -> Unit) {
 @Composable
 private fun StateError(message: String?) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = stringResource(R.string.digivice_search_error, message ?: ""))
+        Text(
+            text = stringResource(R.string.digivice_search_error, message ?: ""),
+            style = LocalTypography.bodyMedium,
+            color = LocalCustomColors.current.error,
+        )
     }
 }
 
 @Composable
 private fun StateEmpty() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = stringResource(R.string.digivice_search_empty))
+        Text(
+            text = stringResource(R.string.digivice_search_empty),
+            style = LocalTypography.bodyMedium
+        )
     }
 }
 
@@ -147,7 +154,7 @@ private fun StateSuccess(
                     },
                 )
                 Spacer(modifier = Modifier.width(Spacing.spacing_04))
-                Text(text = item.name)
+                Text(text = item.name, style = LocalTypography.titleLarge)
             }
         }
     }
@@ -161,7 +168,6 @@ private fun DigiviceSearchEmptyPreview() {
     AppTheme(dynamicColor = false) {
         DigiviceSearchScreen(
             uiState = DigiviceSearchUiState(isLoading = false),
-            onBack = {},
             onClickItem = {},
             onClickSearch = {},
         )
@@ -178,7 +184,6 @@ private fun DigiviceSearchErrorPreview() {
                 items = previewItems,
                 errorMessage = "Unable to load Digimon",
             ),
-            onBack = {},
             onClickItem = {},
             onClickSearch = {},
         )
@@ -197,7 +202,6 @@ private fun DigiviceSearchSuccessPreview() {
     AppTheme(dynamicColor = false) {
         DigiviceSearchScreen(
             uiState = DigiviceSearchUiState(isLoading = false, items = previewItems),
-            onBack = {},
             onClickItem = {},
             onClickSearch = {},
         )
@@ -210,7 +214,6 @@ private fun DigiviceSearchLoadingPreview() {
     AppTheme(dynamicColor = false) {
         DigiviceSearchScreen(
             uiState = DigiviceSearchUiState(isLoading = true),
-            onBack = {},
             onClickItem = {},
             onClickSearch = {},
         )
