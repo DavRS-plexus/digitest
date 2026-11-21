@@ -58,6 +58,18 @@ class DigimonListDataMapperTest {
     }
 
     @Test
+    fun `GIVEN null content, WHEN toDomain is called, THEN returns an empty list`() {
+        // GIVEN
+        val response = DigimonListDTO(content = null, pageable = pageable)
+
+        // WHEN
+        val result = response.toDomain()
+
+        // THEN
+        assertEquals(DigimonListDomainModel(emptyList()), result)
+    }
+
+    @Test
     fun `GIVEN malformed and valid items, WHEN toDomain is called, THEN skips the malformed item and preserves valid items`() {
         // GIVEN
         val malformed = mockk<DigimonDTO>()

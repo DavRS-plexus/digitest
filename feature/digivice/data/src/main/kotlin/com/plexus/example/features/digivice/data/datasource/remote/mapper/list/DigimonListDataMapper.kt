@@ -7,7 +7,7 @@ import com.plexus.example.features.digivice.domain.model.DigimonOverviewDomainMo
 
 internal fun DigimonListDTO.toDomain(): DigimonListDomainModel =
     DigimonListDomainModel(
-        digimons = content.mapNotNull { runCatching { it.toDomain() }.getOrNull() },
+        digimons = content?.mapNotNull { runCatching { it.toDomain() }.getOrNull() } ?: emptyList(),
     )
 
 private fun DigimonDTO.toDomain(): DigimonOverviewDomainModel =
