@@ -8,7 +8,7 @@ import com.plexus.example.features.digivice.domain.usecase.GetDigimonListUseCase
 import com.plexus.example.features.digivice.domain.usecase.SearchDigimonUseCase
 import com.plexus.example.features.digivice.ui.search.mapper.toUi
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiEvent
-import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiEvent.*
+import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiEvent.NavigateToDetail
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiState
 import com.plexus.example.libs.kotlinutils.Either
 import kotlinx.coroutines.CoroutineDispatcher
@@ -37,7 +37,6 @@ internal class DigiviceSearchViewModel(
 
 
     init {
-        println("DAVID = init DigiviceSearchViewModel")
         getDigimonList()
     }
 
@@ -73,6 +72,7 @@ internal class DigiviceSearchViewModel(
                 getDigimonList()
                 return
             }
+
             else -> {
                 updateQuery(query)
                 searchDigimon(query)

@@ -42,6 +42,8 @@ class DigimonDetailViewModelTest {
     @BeforeEach
     fun setUp() {
         Dispatchers.setMain(dispatcher)
+
+        // This is needed because the viewModel load a param of the savedStateHandle in the init
         mockkConstructor(Bundle::class)
         every { anyConstructed<Bundle>().putCharSequence(any(), any()) } answers {
             val key = firstArg<String>()

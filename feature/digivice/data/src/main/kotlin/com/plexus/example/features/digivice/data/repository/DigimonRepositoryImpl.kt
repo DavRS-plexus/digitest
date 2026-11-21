@@ -48,7 +48,6 @@ internal class DigimonRepositoryImpl(
                 emit(
                     remoteDataSource.searchDigimon(name).map(
                         onSuccess = {
-                            println("DAVID = onSuccess searchDigimon: $name")
                             it.toDomain().also {
                                 localDataSource.saveDigimonList(name, it.toData())
                             }
