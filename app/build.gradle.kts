@@ -18,13 +18,8 @@ android {
             isDebuggable = true
         }
         create("debugMinified") {
-            initWith(getByName("debug"))
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("debug")
         }
         release {
@@ -75,8 +70,4 @@ dependencies {
     implementation(project(":feature:digivice:data"))
     implementation(project(":feature:digivice:domain"))
     implementation(project(":feature:digivice:ui"))
-
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.espresso.core)
 }
