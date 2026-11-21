@@ -10,7 +10,7 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class DigimonListMapperTest {
+class DigimonListDataMapperTest {
     private val pageable = PaginationDTO(
         currentPage = 0,
         elementsOnPage = 2,
