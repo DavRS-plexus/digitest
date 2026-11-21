@@ -12,6 +12,5 @@ internal fun DigiviceDetailEntryPoint() {
     val viewModel: DigimonDetailViewModel = koinViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-
     DigiviceDetailScreen(uiState = uiState)
 }

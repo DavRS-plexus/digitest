@@ -28,15 +28,12 @@ fun NavGraphBuilder.digiviceNavGraph(
             DigiviceListEntryPoint(
                 navigateToDetail = { digimonId ->
                     navController.navigate(DigiviceDetailRoute(digimonId))
-                },
-                back = {
-                    // TODO
                 }
             )
         }
 
         // Detail
-        composable<DigiviceDetailRoute> { entry ->
+        composable<DigiviceDetailRoute> {
             DigiviceDetailEntryPoint()
         }
     }

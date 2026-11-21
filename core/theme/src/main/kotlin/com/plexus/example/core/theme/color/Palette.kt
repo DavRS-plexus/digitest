@@ -10,6 +10,7 @@ internal object Palette {
         val md_theme_light_tertiary = Color(0xFF7D5260)
         val md_theme_light_background = Color(0xFFFFFBFF)
         val md_theme_light_icon = Color(0xFF6431CB)
+        val md_theme_light_error = Color(0xFFE13232)
     }
 
     object Dark {
@@ -18,5 +19,6 @@ internal object Palette {
         val md_theme_dark_tertiary = Color(0xFFEFB8C8)
         val md_theme_dark_background = Color(0xFF1F1B16)
         val md_theme_dark_icon = Color(0xFFFFFBFF)
+        val md_theme_dark_error = Color(0xFFE13232)
     }
 }

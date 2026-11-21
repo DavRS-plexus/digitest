@@ -14,10 +14,7 @@ pluginManagement {
     // Shared build config
     includeBuild("build-logic")
 }
-// TODO: remove
-//plugins {
-//    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-//}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -43,6 +40,8 @@ include(":core:error:domain")
 include(":core:navigation")
 include(":core:network")
 include(":core:resources")
+include(":core:storage")
+include(":core:storage:data")
 include(":core:theme")
 
 // Features Modules

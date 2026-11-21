@@ -52,6 +52,8 @@ private fun StateLoading() {
 private fun StateFailure(errorMessage: String?) {
     Text(
         text = stringResource(R.string.digimon_detail_error, errorMessage ?: ""),
+        style = LocalTypography.bodyMedium,
+        color = LocalCustomColors.current.error,
         modifier = Modifier.padding(Spacing.spacing_04),
     )
 }
@@ -77,11 +79,23 @@ private fun StateSuccess(detail: DigimonDetailUiModel) {
             )
         }
 
-        DetailField(stringResource(R.string.digimon_detail_name), listOf(detail.name))
-        DetailField(stringResource(R.string.digimon_detail_level), listOf(detail.level))
+        DetailField(stringResource(R.string.digimon_detail_name), detail.name)
+        DetailField(stringResource(R.string.digimon_detail_level), detail.level)
         DetailField(stringResource(R.string.digimon_detail_type), detail.types)
         DetailField(stringResource(R.string.digimon_detail_attribute), detail.attributes)
-        DetailField(stringResource(R.string.digimon_detail_description), listOf(detail.description))
+        DetailField(stringResource(R.string.digimon_detail_description), detail.description)
+    }
+}
+
+@Composable
+private fun DetailField(label: String, value: String) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(text = label, style = LocalTypography.titleLarge)
+        if (value.isBlank()) {
+            Text(stringResource(R.string.digimon_detail_unavailable))
+        } else {
+            Text(text = value, style = LocalTypography.bodyMedium)
+        }
     }
 }
 
@@ -126,6 +140,26 @@ private fun DigiviceDetailPreview() {
 private fun DigiviceDetailLoadingPreview() {
     AppTheme(dynamicColor = false) {
         DigiviceDetailScreen(DigimonDetailUiState())
+    }
+}
+
+@Preview(name = "Blank detail fields", showBackground = true)
+@Composable
+private fun DigiviceDetailBlankFieldsPreview() {
+    AppTheme(dynamicColor = false) {
+        DigiviceDetailScreen(
+            DigimonDetailUiState(
+                isLoading = false,
+                detail = DigimonDetailUiModel(
+                    name = "",
+                    imageUrl = null,
+                    level = "",
+                    types = emptyList(),
+                    attributes = emptyList(),
+                    description = "",
+                ),
+            )
+        )
     }
 }
 

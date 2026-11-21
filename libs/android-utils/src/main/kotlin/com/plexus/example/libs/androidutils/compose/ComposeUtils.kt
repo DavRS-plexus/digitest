@@ -57,20 +57,3 @@ fun ObserveLifecycleEvents(
         }
     }
 }
-
-/**
- * A text a mapper or ViewModel can build without a Context: either literal (it comes from the
- * backend, e.g. a promotion name) or a string resource (the app's own labels, translated).
- * The screen turns it into a String with [asString].
- */
-sealed interface UiText {
-    data class Dynamic(val value: String) : UiText
-
-    class Resource(@param:StringRes val id: Int, vararg val args: Any) : UiText
-}
-
-@Composable
-fun UiText.asString(): String = when (this) {
-    is UiText.Dynamic -> value
-    is UiText.Resource -> stringResource(id, *args)
-}

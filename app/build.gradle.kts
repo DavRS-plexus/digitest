@@ -8,7 +8,7 @@ android {
     namespace = "com.plexus.example"
 
     defaultConfig {
-        applicationId = "com.plexus.example.poketest"
+        applicationId = "com.plexus.example.digitest"
         versionCode = 1
         versionName = "1.0"
     }
@@ -47,9 +47,10 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
 
     // Core
-    implementation(project(":core:network"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:network"))
     implementation(project(":core:resources"))
+    implementation(project(":core:storage:data"))
     implementation(project(":core:theme"))
 
     // Features
