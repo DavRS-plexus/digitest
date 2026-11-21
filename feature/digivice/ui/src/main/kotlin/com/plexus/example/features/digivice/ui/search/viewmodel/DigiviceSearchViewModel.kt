@@ -33,7 +33,8 @@ internal class DigiviceSearchViewModel(
 
     private fun getDigimonList() {
         searchJob?.cancel()
-        showLoading()
+        _uiState.value = DigiviceSearchUiState(isLoading = true)
+
         searchJob = viewModelScope.launch(Dispatchers.IO) {
             delay(3000) // TODO: QUITAR
             getDigimonListUseCase().collect { result ->
@@ -63,7 +64,8 @@ internal class DigiviceSearchViewModel(
         }
 
         searchJob?.cancel()
-        showLoading()
+        _uiState.value = DigiviceSearchUiState(isLoading = true)
+
         searchJob = viewModelScope.launch(Dispatchers.IO) {
             searchDigimonUseCase(query).collect { result ->
                 when (result) {
@@ -73,16 +75,6 @@ internal class DigiviceSearchViewModel(
                     }
                 }
             }
-        }
-    }
-
-    private fun showLoading() {
-        _uiState.update { currentState ->
-            currentState.copy(
-                isLoading = true,
-                items = emptyList(),
-                errorMessage = null
-            )
         }
     }
 

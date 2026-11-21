@@ -13,10 +13,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -30,11 +30,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil3.compose.SubcomposeAsyncImage
 import com.plexus.example.core.resources.R
 import com.plexus.example.core.theme.AppTheme
 import com.plexus.example.core.theme.color.LocalCustomColors
+import com.plexus.example.core.theme.dimen.Size
+import com.plexus.example.core.theme.dimen.Spacing
 import com.plexus.example.features.digivice.ui.search.model.DigimonItemUiModel
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiState
 
@@ -51,7 +52,11 @@ internal fun DigiviceSearchScreen(
             .background(color = LocalCustomColors.current.background)
     ) {
         TopSearch(onClickSearch = onClickSearch)
-        Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+        ) {
             when {
                 uiState.isEmptyList() -> StateEmpty()
                 uiState.isErrorVisible() -> StateError(message = uiState.errorMessage)
@@ -72,7 +77,9 @@ private fun TopSearch(onClickSearch: (String) -> Unit) {
     OutlinedTextField(
         value = searchText,
         onValueChange = { searchText = it },
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(Spacing.spacing_04),
         label = { Text(stringResource(R.string.digivice_search_name)) },
         singleLine = true,
         trailingIcon = {
@@ -89,7 +96,7 @@ private fun TopSearch(onClickSearch: (String) -> Unit) {
 @Composable
 private fun StateError(message: String?) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = stringResource(R.string.digivice_search_error) + ": $message")
+        Text(text = stringResource(R.string.digivice_search_error, message ?: ""))
     }
 }
 
@@ -110,10 +117,12 @@ private fun StateSuccess(
         if (isLoading) {
             item {
                 Box(
-                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(Spacing.spacing_04),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(modifier = Modifier.size(Size.size_loading_big))
                 }
             }
         }
@@ -122,14 +131,14 @@ private fun StateSuccess(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onClickItem(item.id) }
-                    .padding(16.dp),
+                    .padding(Spacing.spacing_04),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 SubcomposeAsyncImage(
                     model = item.imageUrl,
                     contentDescription = null,
-                    modifier = Modifier.size(64.dp),
-                    loading = { CircularProgressIndicator(modifier = Modifier.size(24.dp)) },
+                    modifier = Modifier.size(Size.size_image_thumbnail),
+                    loading = { CircularProgressIndicator(modifier = Modifier.size(Size.size_loading_small)) },
                     error = {
                         Icon(
                             imageVector = Icons.Filled.Close,
@@ -137,20 +146,14 @@ private fun StateSuccess(
                         )
                     },
                 )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(text = "${item.id} - ${item.name}")
+                Spacer(modifier = Modifier.width(Spacing.spacing_04))
+                Text(text = item.name)
             }
         }
     }
 }
 
 // region Previews
-
-private val previewItems = listOf(
-    DigimonItemUiModel(id = "1", name = "Agumon", imageUrl = ""),
-    DigimonItemUiModel(id = "2", name = "Airdramon", imageUrl = ""),
-    DigimonItemUiModel(id = "3", name = "Angemon", imageUrl = ""),
-)
 
 @Preview(name = "Empty", showBackground = true)
 @Composable
@@ -181,6 +184,12 @@ private fun DigiviceSearchErrorPreview() {
         )
     }
 }
+
+private val previewItems = listOf(
+    DigimonItemUiModel(id = "1", name = "Agumon", imageUrl = ""),
+    DigimonItemUiModel(id = "2", name = "Airdramon", imageUrl = ""),
+    DigimonItemUiModel(id = "3", name = "Angemon", imageUrl = ""),
+)
 
 @Preview(name = "Success", showBackground = true)
 @Composable

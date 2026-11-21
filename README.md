@@ -19,3 +19,4 @@ https://composables.com/android-distribution-chart
 * DI = Koin (with compiler plugin)
 * Navigation using Roots and Routes
 * UNIT TEST
+* BuildVariant + ofuscación

@@ -1,12 +1,9 @@
 plugins {
-    id("kotlin.library")
+    id("kotlin.domain")
 }
 
 dependencies {
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-
-    implementation(libs.kotlinx.coroutines.core)
+    implementation(project(":core:error:domain"))
 
     implementation(project(":libs:kotlin-utils"))
 }
