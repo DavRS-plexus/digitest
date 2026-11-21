@@ -12,9 +12,10 @@ android {
 dependencies {
     implementation(project(":feature:digivice:domain"))
 
+    implementation(project(":core:error:domain"))
     implementation(project(":core:navigation"))
-    implementation(project(":core:theme"))
     implementation(project(":core:resources"))
+    implementation(project(":core:theme"))
 
     implementation(project(":libs:android-utils"))
     implementation(project(":libs:kotlin-utils"))

@@ -1,9 +1,10 @@
 plugins {
-    id("kotlin.config")
+    id("config.kotlin")
 }
 
 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 dependencies {
-    implementation(libs.findLibrary("androidx-annotation-jvm").get())
+    // Kotlin
+    implementation(libs.findLibrary("kotlinx-coroutines-core").get())
 }

@@ -14,7 +14,7 @@ open class ErrorDTO(
     )
 
     data class ExceptionErrorDTO(override val message: String) : ErrorDTO(
-        code = ERROR_EXCEPTION_CODE,
+        error = ERROR_EXCEPTION_CODE,
         message = message,
     )
 }

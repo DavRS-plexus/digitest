@@ -10,7 +10,7 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun DigiviceListEntryPoint(
-    navigateTo: (route: DigiviceInternalRoute) -> Unit,
+    navigateToDetail: (digimonId: String) -> Unit,
     back: () -> Unit,
 ) {
     val searchViewModel: DigiviceSearchViewModel = koinViewModel()
@@ -25,11 +25,9 @@ internal fun DigiviceListEntryPoint(
         uiState = uiState,
         onBack = back,
         onClickSearch = searchViewModel::searchDigimon,
-        onClickItem = { transactionId ->
-//            searchViewModel.onAction(
-//                DigiviceSearchViewModel.UserAction.OnClickTransactionItem(transactionId)
-//            )
-        }
+        onClickItem = { digimonId ->
+            navigateToDetail(digimonId)
+        },
     )
 }
 

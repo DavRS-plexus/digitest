@@ -11,9 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.plexus.example.core.resources.R
 import com.plexus.example.core.theme.color.LocalCustomColors
 import com.plexus.example.navigation.MainNavHost
@@ -24,6 +26,7 @@ fun MainApp(
     navigationManager: NavigationManager
 ) {
     val navController = rememberNavController()
+    val backStackEntry by navController.currentBackStackEntryAsState()
 
     // Get current back stack entry
 //    val backStackEntry by navController.currentBackStackEntryAsState()
@@ -35,7 +38,7 @@ fun MainApp(
     Scaffold(
         topBar = {
             TopBar(
-                canNavigateBack = navController.previousBackStackEntry != null,
+                canNavigateBack = backStackEntry != null && navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
             )
         }

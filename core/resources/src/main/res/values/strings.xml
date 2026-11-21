@@ -2,8 +2,15 @@
     <string name="app_name">Digitest</string>
     <string name="back_button">Back</string>
     <string name="digivice_search_empty">No Digimon found</string>
-    <string name="digivice_search_error">An error occurred</string>
+    <string name="digivice_search_error">An error occurred: %1$s</string>
     <string name="digivice_search_name">Digimon name</string>
     <string name="digivice_search_button">Search</string>
     <string name="digivice_image_load_error">Unable to load Digimon image</string>
+    <string name="digimon_detail_error">Unable to load Digimon: %1$s</string>
+    <string name="digimon_detail_name">Name</string>
+    <string name="digimon_detail_level">Level</string>
+    <string name="digimon_detail_type">Type</string>
+    <string name="digimon_detail_attribute">Attribute</string>
+    <string name="digimon_detail_description">Description</string>
+    <string name="digimon_detail_unavailable">Not available</string>
 </resources>
