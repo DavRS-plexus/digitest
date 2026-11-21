@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.SubcomposeAsyncImage
 import com.plexus.example.core.resources.R
@@ -100,6 +101,7 @@ private fun StateError(message: String?) {
             text = stringResource(R.string.digivice_search_error, message ?: ""),
             style = LocalTypography.bodyMedium,
             color = LocalCustomColors.current.error,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -109,7 +111,8 @@ private fun StateEmpty() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(
             text = stringResource(R.string.digivice_search_empty),
-            style = LocalTypography.bodyMedium
+            style = LocalTypography.bodyMedium,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -163,6 +166,8 @@ private fun StateSuccess(
 // region Previews
 
 @Preview(name = "Empty", showBackground = true)
+@Preview(name = "Empty - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Empty - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceSearchEmptyPreview() {
     AppTheme(dynamicColor = false) {
@@ -175,6 +180,8 @@ private fun DigiviceSearchEmptyPreview() {
 }
 
 @Preview(name = "Error", showBackground = true)
+@Preview(name = "Error - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Error - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceSearchErrorPreview() {
     AppTheme(dynamicColor = false) {
@@ -197,6 +204,8 @@ private val previewItems = listOf(
 )
 
 @Preview(name = "Success", showBackground = true)
+@Preview(name = "Success - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Success - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceSearchSuccessPreview() {
     AppTheme(dynamicColor = false) {
@@ -209,6 +218,8 @@ private fun DigiviceSearchSuccessPreview() {
 }
 
 @Preview(name = "Loading", showBackground = true)
+@Preview(name = "Loading - font 130%", showBackground = true, fontScale = 1.3f)
+@Preview(name = "Loading - font 200%", showBackground = true, fontScale = 2f)
 @Composable
 private fun DigiviceSearchLoadingPreview() {
     AppTheme(dynamicColor = false) {
