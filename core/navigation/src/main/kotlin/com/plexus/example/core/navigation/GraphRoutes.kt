@@ -8,4 +8,4 @@ import kotlinx.serialization.Serializable
 object HomeGraph
 
 @Serializable
-object InfoGraph
+object DigiviceGraph

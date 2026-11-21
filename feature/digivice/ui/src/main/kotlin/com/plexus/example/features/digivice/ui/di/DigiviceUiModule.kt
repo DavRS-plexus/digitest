@@ -1,0 +1,9 @@
+package com.plexus.example.features.digivice.ui.di
+
+import com.plexus.example.features.digivice.ui.search.viewmodel.DigiviceSearchViewModel
+import org.koin.dsl.module
+import org.koin.plugin.module.dsl.viewModel
+
+val digiviceUiModule = module {
+    viewModel<DigiviceSearchViewModel>()
+}

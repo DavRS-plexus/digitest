@@ -18,13 +18,13 @@ fun provideHttpClient(): OkHttpClient {
 fun provideConverterFactory(): GsonConverterFactory =
     GsonConverterFactory.create()
 
-
+// TODO: provide the url from build.gradle
 fun provideRetrofit(
     okHttpClient: OkHttpClient,
     gsonConverterFactory: GsonConverterFactory
 ): Retrofit {
     return Retrofit.Builder()
-        .baseUrl("TODO")
+        .baseUrl("https://digi-api.com/")
         .client(okHttpClient)
         .addConverterFactory(gsonConverterFactory)
         .build()
