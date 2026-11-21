@@ -42,10 +42,14 @@ include(":core:theme")
 include(":core:resources")
 include(":core:navigation")
 include(":core:error")
+include(":core:error:data")
+include(":core:error:domain")
 include(":core:network")
 
 // Features Modules
-// ...
+include(":feature:digivice:ui")
+include(":feature:digivice:domain")
+include(":feature:digivice:data")
 
 // Libs Modules
 include(":libs:android-utils")

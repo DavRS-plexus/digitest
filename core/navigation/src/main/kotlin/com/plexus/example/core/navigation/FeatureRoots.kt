@@ -5,4 +5,4 @@ import kotlinx.serialization.Serializable
 
 // Roots
 @Serializable object HomeRoot
-@Serializable object InfoRoot
+@Serializable object DigiviceRoot
