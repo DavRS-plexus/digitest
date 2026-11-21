@@ -8,7 +8,7 @@ import com.plexus.example.libs.kotlinutils.Either
 import kotlinx.coroutines.flow.Flow
 
 
-interface DigiviceRepository {
+interface DigimonRepository {
 
     suspend fun getDigimonList(): Flow<Either<List<DigimonOverviewDomainModel>, String>>
     suspend fun searchDigimon(name: String): Flow<Either<DigimonListDomainModel, String>>

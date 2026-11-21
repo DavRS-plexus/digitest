@@ -1,12 +1,19 @@
 package com.plexus.example.features.digivice.data.datasource.remote.model.response.list
 
 import androidx.annotation.Keep
-import com.plexus.example.features.digivice.data.datasource.remote.model.response.DigimonDTO
 
 @Keep
 data class DigimonListDTO(
     val content: List<DigimonDTO>,
     val pageable: PaginationDTO,
+)
+
+@Keep
+data class DigimonDTO(
+    val id: Int,
+    val name: String,
+    val href: String,
+    val image: String,
 )
 
 @Keep

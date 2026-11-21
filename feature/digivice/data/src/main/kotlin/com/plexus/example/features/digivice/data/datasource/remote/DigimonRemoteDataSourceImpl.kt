@@ -10,9 +10,9 @@ import com.plexus.example.libs.kotlinutils.Either
 import com.plexus.example.libs.kotlinutils.Either.Companion.failure
 import com.plexus.example.libs.kotlinutils.Either.Companion.success
 
-class DigiviceRemoteDataSourceImpl(
+class DigimonRemoteDataSourceImpl(
     private val apiService: DigimonApiService,
-) : DigiviceRemoteDataSource {
+) : DigimonRemoteDataSource {
     override suspend fun getDigimonList(): Either<DigimonListDTO, String> {
         val response = apiService.getDigimons(
             pageSize = 20

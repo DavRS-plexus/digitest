@@ -47,9 +47,10 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
 
     // Core
-    implementation(project(":core:network"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:network"))
     implementation(project(":core:resources"))
+    implementation(project(":core:storage:data"))
     implementation(project(":core:theme"))
 
     // Features

@@ -10,11 +10,7 @@ data class DigimonDetailDTO(
     val types: List<DigimonTypeDTO>,
     val attributes: List<DigimonAttributeDTO>,
     val descriptions: List<DigimonDescriptionDTO>,
-) {
-    internal object DescriptionLanguage {
-        const val ENGLISH = "en_us"
-    }
-}
+)
 
 @Keep
 data class DigimonImageDTO(val href: String)
@@ -29,4 +25,8 @@ data class DigimonTypeDTO(val type: String)
 data class DigimonAttributeDTO(val attribute: String)
 
 @Keep
-data class DigimonDescriptionDTO(val language: String, val description: String)
+data class DigimonDescriptionDTO(val language: String, val description: String) {
+    internal object DescriptionLanguage {
+        const val ENGLISH = "en_us"
+    }
+}
