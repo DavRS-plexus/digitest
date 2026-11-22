@@ -59,18 +59,6 @@ La instalación no abre la aplicación. Puedes abrirla desde el dispositivo o ej
 adb shell am start -n com.plexus.example.digitest.dev/com.plexus.example.ui.MainActivity
 ```
 
-### Variantes disponibles
-
-Los entornos `dev` y `pro` utilizan actualmente la misma API (`https://digi-api.com/`). El entorno `dev` añade el sufijo `.dev` al identificador de la aplicación.
-
-| Tipo de compilación | Uso |
-|---|---|
-| `debug` | Desarrollo con depuración habilitada. |
-| `debugMinified` | Comprobación de la minificación y reducción de recursos, con firma de depuración. |
-| `release` | Compilación con minificación y reducción de recursos. Requiere configurar una firma de distribución para publicar la app. |
-
-Por ejemplo, `.\gradlew.bat :app:assembleDevDebugMinified` genera la variante de desarrollo minificada.
-
 ## Manual de uso
 
 La app es compatible para dispositivos Android 9 (api 28) y superior. 
@@ -180,7 +168,7 @@ Cada funcionalidad registra sus dependencias en módulos propios. `appModule` re
 
 La navegación utiliza **Navigation Compose con rutas tipadas**.
 
-`MainNavHost` integra los grafos de Home y Digivice. El módulo `core:navigation` define las rutas de entrada y los identificadores de grafos compartidos, mientras que cada funcionalidad mantiene sus destinos internos.
+`MainNavHost` integra los grafos de Home y Digivice. El módulo `core:navigation` define las rutas de entrada y los identificadores de grafos compartidos, mientras que cada módulo mantiene sus navegaciones internas.
 
 ### Servicios compartidos
 
@@ -189,6 +177,14 @@ La navegación utiliza **Navigation Compose con rutas tipadas**.
 - **Almacenamiento:** infraestructura de caché en `core:storage:data`.
 - **Diseño:** tema, colores, tipografía y dimensiones en `core:theme`; recursos compartidos en `core:resources`.
 - **Utilidades:** extensiones y el tipo `Either` en `libs`.
+
+### Tests unitarios
+
+- **JUnit Jupiter (versión 5):** definición y ejecución de pruebas mediante JUnit Platform.
+- **MockK:** simulación de dependencias y verificación de llamadas.
+- **kotlinx-coroutines-test:** control de corrutinas mediante `runTest`, `StandardTestDispatcher` y `advanceUntilIdle`.
+
+Los tests siguen la estructura **Given / When / Then**.
 
 ## Extras
 
@@ -216,11 +212,31 @@ Los informes se generan en `build/reports/detekt` de cada módulo.
 
 La CI utiliza **GitHub Actions** y se ejecuta al abrir o actualizar una pull request. También puede lanzarse manualmente desde **Actions > Run workflow**.
 
-### Workflows
-
 | Workflow | Archivo | Comprobaciones |
 |---|---|---|
 | **Build** | `.github/workflows/build.yml` | Compila las variantes `debug` mediante `:app:assembleDebug`. |
 | **Unit tests** | `.github/workflows/unit-tests.yml` | Ejecuta `detekt` y después las pruebas unitarias mediante `test`. |
 
 Si falla la compilación, el análisis estático o alguna prueba, la comprobación correspondiente aparece como fallida en la pull request.
+
+### Build Variants + Product Flavors
+
+| Flavor | Identificador de aplicación | URL de la API |
+|---|---|---|
+| `dev` | `com.plexus.example.digitest.dev` | `https://digi-api.com/` |
+| `pro` | `com.plexus.example.digitest` | `https://digi-api.com/` |
+
+El sufijo `.dev` permite instalar las versiones de desarrollo y producción simultáneamente en el mismo dispositivo.
+
+Actualmente, ambos entornos utilizan la misma API. La URL se genera como `BuildConfig.digiapiUrl` y se inyecta a través de Koin para configurar el módulo de red.
+
+| Build Type | Características |
+|---|---|
+| `debug` | Depuración habilitada y firma automática de desarrollo. Sin minificación ni reducción de recursos. |
+| `debugMinified` | Hereda la configuración de `release`, pero utiliza la firma de desarrollo para facilitar su instalación local. |
+| `release` | Minificación del código y reducción de recursos habilitadas. Sin configuración de firma de distribución en el proyecto. |
+
+El objetivo de `debugMinified` es comprobar el comportamiento de la aplicación con las optimizaciones de producción, sin necesitar una clave de distribución.
+
+`matchingFallbacks` permite que `debugMinified` utilice la variante `debug` de los módulos dependientes que no disponen de ese tipo de compilación.
+
