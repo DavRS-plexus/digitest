@@ -8,7 +8,3 @@ style:
     excludes: &testSources
       - '**/src/test*/**'
       - '**/src/androidTest*/**'
-
-ktlint:
-  MaximumLineLength:
-    excludes: *testSources
