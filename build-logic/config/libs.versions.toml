@@ -20,9 +20,6 @@ detekt = "2.0.0-alpha.6"
 [libraries]
 gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 
-# DeteKt
-detekt-rules-ktlint-wrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
-
 # Kotlin
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }

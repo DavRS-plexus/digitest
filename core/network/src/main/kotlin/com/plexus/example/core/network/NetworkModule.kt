@@ -33,7 +33,6 @@ fun provideRetrofit(
         .build()
 }
 
-
 val networkModule = module {
     single { create(::provideHttpClient) }
     single { create(::provideConverterFactory) }

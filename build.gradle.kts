@@ -4,14 +4,8 @@ plugins {
     alias(libs.plugins.detekt) apply false
 }
 
-val detektKtlint = libs.detekt.rules.ktlint.wrapper
-
 subprojects {
     apply(plugin = "dev.detekt")
-
-    dependencies {
-        add("detektPlugins", detektKtlint)
-    }
 
     extensions.configure<dev.detekt.gradle.extensions.DetektExtension> {
         config.setFrom(rootProject.file("config/detekt/detekt.yml"))

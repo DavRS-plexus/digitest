@@ -1,7 +1,3 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>ForbiddenComment:ExampleInstrumentedTest.kt://TODO:REVIEW</ID>
-  </CurrentIssues>
 </SmellBaseline>
