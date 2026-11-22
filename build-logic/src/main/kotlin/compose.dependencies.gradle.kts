@@ -1,6 +1,3 @@
-import gradle.kotlin.dsl.accessors._9cccbb759b7db166d79680b5f8744702.androidTestImplementation
-import gradle.kotlin.dsl.accessors._9cccbb759b7db166d79680b5f8744702.debugImplementation
-
 plugins {
     id("com.android.library")
     id("config.android")

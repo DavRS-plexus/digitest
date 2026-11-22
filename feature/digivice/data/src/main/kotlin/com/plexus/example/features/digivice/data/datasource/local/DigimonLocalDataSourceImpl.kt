@@ -28,5 +28,5 @@ internal class DigimonLocalDataSourceImpl(
         }
     }
 
-    private fun key(name: String) = SEARCH_KEY.suffix(name)
+    private fun key(name: String) = SEARCH_KEY.suffix(name.lowercase())
 }
