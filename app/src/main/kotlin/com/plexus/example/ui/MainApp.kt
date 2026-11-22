@@ -27,38 +27,35 @@ fun MainApp() {
         topBar = {
             TopBar(
                 canNavigateBack = backStackEntry != null && navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = { navController.navigateUp() },
             )
-        }
+        },
     ) { innerPadding ->
         MainNavHost(
             innerPadding = innerPadding,
-            navController = navController
+            navController = navController,
         )
     }
 }
 
 @Composable
-private fun TopBar(
-    canNavigateBack: Boolean,
-    navigateUp: () -> Unit
-) {
+private fun TopBar(canNavigateBack: Boolean, navigateUp: () -> Unit) {
     TopAppBar(
         title = { Text(stringResource(R.string.app_name), style = LocalTypography.headlineSmall) },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = LocalCustomColors.current.topBarContainerColor,
             titleContentColor = LocalCustomColors.current.topBarTitleContentColor,
-            navigationIconContentColor = LocalCustomColors.current.topBarNavigationIconContentColor
+            navigationIconContentColor = LocalCustomColors.current.topBarNavigationIconContentColor,
         ),
         navigationIcon = {
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back_button)
+                        contentDescription = stringResource(R.string.back_button),
                     )
                 }
             }
-        }
+        },
     )
 }

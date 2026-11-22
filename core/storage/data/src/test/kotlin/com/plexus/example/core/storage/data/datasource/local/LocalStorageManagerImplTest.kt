@@ -1,6 +1,6 @@
 package com.plexus.example.core.storage.data.datasource.local
 
-import com.plexus.example.core.storage.data.datasource.local.datastore.RuntimeDataStore
+import com.plexus.example.core.storage.data.datasource.local.datastore.runtime.RuntimeDataStore
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

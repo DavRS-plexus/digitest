@@ -20,12 +20,11 @@ fun MainNavHost(innerPadding: PaddingValues, navController: NavHostController) {
         startDestination = HomeGraph,
         modifier = Modifier
             .fillMaxSize()
-            .padding(innerPadding)
+            .padding(innerPadding),
     ) {
         // NavGraphs of every feature
         homeNavGraph(
-            navController = navController,
-            navigateToDigivice = { navController.navigate(DigiviceRoot) }
+            navigateToDigivice = { navController.navigate(DigiviceRoot) },
         )
         digiviceNavGraph(navController = navController)
     }

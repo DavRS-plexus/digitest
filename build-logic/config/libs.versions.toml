@@ -14,10 +14,14 @@ coil = "3.6.3"
 annotation = "1.11.0"
 jUnit = "5.14.3"
 mockk = "1.14.12"
+detekt = "2.0.0-alpha.6"
 
 
 [libraries]
 gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+
+# DeteKt
+detekt-rules-ktlint-wrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
 
 # Kotlin
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -70,6 +74,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 
 
 [bundles]

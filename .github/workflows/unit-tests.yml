@@ -28,5 +28,8 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Run Detekt
+        run: bash ./gradlew detekt --console=plain
+
       - name: Run unit tests
         run: bash ./gradlew test --console=plain

@@ -10,7 +10,7 @@ import com.plexus.example.core.navigation.DigiviceGraph
 import com.plexus.example.core.navigation.DigiviceRoot
 import com.plexus.example.features.digivice.ui.search.DigiviceListEntryPoint
 import com.plexus.example.features.digivice.ui.detail.DigiviceDetailEntryPoint
-import com.plexus.example.features.digivice.ui.navigation.DigiviceInternalRoute.*
+import com.plexus.example.features.digivice.ui.navigation.DigiviceInternalRoute.DigiviceDetailRoute
 
 fun NavGraphBuilder.digiviceNavGraph(navController: NavHostController) {
     navigation<DigiviceGraph>(

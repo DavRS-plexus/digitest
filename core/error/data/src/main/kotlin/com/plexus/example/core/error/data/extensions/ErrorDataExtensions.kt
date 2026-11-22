@@ -22,7 +22,7 @@ fun Response<*>.toErrorResponse(): ErrorResponseDTO {
             error = errorDTO,
             httpCode = code()
         )
-    } catch (e: Exception) {
+    } catch (e: RuntimeException) {
         e.toErrorResponseDTO(code())
     }
 

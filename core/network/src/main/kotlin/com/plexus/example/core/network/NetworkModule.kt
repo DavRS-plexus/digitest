@@ -7,11 +7,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+private const val TIMEOUT_READ_SECONDS = 60
+private const val TIMEOUT_CONNECT_SECONDS = 60
+
 fun provideHttpClient(): OkHttpClient {
     return OkHttpClient
         .Builder()
-        .readTimeout(60, TimeUnit.SECONDS)
-        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(TIMEOUT_READ_SECONDS.toLong(), TimeUnit.SECONDS)
+        .connectTimeout(TIMEOUT_CONNECT_SECONDS.toLong(), TimeUnit.SECONDS)
         .build()
 }
 

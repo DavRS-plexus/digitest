@@ -1,0 +1,14 @@
+naming:
+  FunctionNaming:
+    ignoreAnnotated:
+      - Composable
+
+style:
+  MaxLineLength:
+    excludes: &testSources
+      - '**/src/test*/**'
+      - '**/src/androidTest*/**'
+
+ktlint:
+  MaximumLineLength:
+    excludes: *testSources

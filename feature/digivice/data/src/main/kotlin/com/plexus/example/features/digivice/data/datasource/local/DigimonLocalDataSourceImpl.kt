@@ -1,9 +1,7 @@
 package com.plexus.example.features.digivice.data.datasource.local
 
-import com.plexus.example.core.error.domain.model.ErrorDomainModel
 import com.plexus.example.core.storage.data.datasource.local.LocalStorageManager
 import com.plexus.example.features.digivice.data.datasource.local.model.DigimonSearchDataModel
-import com.plexus.example.libs.kotlinutils.Either
 import com.plexus.example.libs.kotlinutils.extensions.suffix
 import java.util.concurrent.TimeUnit
 
