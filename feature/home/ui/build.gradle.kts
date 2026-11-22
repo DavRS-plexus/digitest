@@ -1,7 +1,6 @@
 plugins {
     id("android.dependencies")
     id("compose.dependencies")
-    alias(libs.plugins.koin.compiler)
 }
 
 android {

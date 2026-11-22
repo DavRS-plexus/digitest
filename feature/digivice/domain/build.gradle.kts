@@ -1,6 +1,5 @@
 plugins {
     id("kotlin.domain")
-    alias(libs.plugins.koin.compiler)
 }
 
 dependencies {

@@ -1,8 +1,6 @@
 plugins {
     id("android.dependencies")
     id("compose.dependencies")
-    alias(libs.plugins.koin.compiler)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
