@@ -100,6 +100,7 @@ https://github.com/user-attachments/assets/1276abd4-5d00-4e86-a57c-3be1572c052f
 * Si existe una respuesta cacheada para la búsqueda realizada, se devuelve sin realizar ninguna petición a la API. En caso contrario, se realiza la petición.
 * Si la api devuelve una respuesta exitosa y parseable al modelo definido en la app, se realiza el guardado en la caché.
 * La caché se realiza en memoria y tiene una caducidad de 5 minutos por entrada.
+* La caché tiene un límite de 50 entradas y elimina la menos recientemente utilizada cuando se supera.
 * Tiempo monotónico con `System.nanoTime()` de forma que no depende de la hora/fecha del dispositivo.
 * Las entradas cuyo tiempo ha expirado se eliminan al intentar recuperarlas.
 * El listado inicial y el detalle se consultan siempre de manera remota.
