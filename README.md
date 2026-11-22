@@ -80,12 +80,15 @@ Esta sección contiene 2 pantallas
 2. El usuario puede buscar "por nombre", introduciendo un texto en el buscador y haciendo click sobre la lupa del teclado o pantalla. Esta petición sí se cachea.
 3. La app mostrará los Digimon con nombres parecidos al texto que haya escrito el usuario.
 4. Si el usuario introduce una búsqueda en blanco, se realiza la misma petición que en el primer punto. Sin caché.
+5. Si no hay ningún Digimon que coincida con los parámetros de la búsqueda, se muestra un mensaje al usuario.
+6. Si la búsqueda remota no puede recuperarse por motivo X (petición fallida, no hay internet, etc), se muestra un mensaje al usuario + traza del error.
 
 #### Pantalla Detalle
 
 1. Se muestra la información más relevante del Digimon: Nombre, Nivel, Tipos, Atributos y Descripción.
 2. El usuario no tiene interacción más allá de volver para atrás.
 3. Esta petición no se cachea.
+4. Si el detalle no puede recuperarse por motivo X (petición fallida, no hay internet, etc), se muestra un mensaje al usuario + traza del error.
 
 ### Vídeos del uso
 
