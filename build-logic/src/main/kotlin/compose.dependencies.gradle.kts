@@ -19,7 +19,7 @@ dependencies {
     implementation(libs.findBundle("compose").get())
     debugImplementation(libs.findLibrary("androidx-compose-ui-tooling").get())
 
-    // UI testing dependencies
+    // UI testing
     androidTestImplementation(platform(libs.findLibrary("androidx-compose-bom").get()))
     androidTestImplementation(libs.findLibrary("androidx-compose-ui-test-junit4").get())
     androidTestImplementation(libs.findLibrary("androidx-test-ext-junit").get())

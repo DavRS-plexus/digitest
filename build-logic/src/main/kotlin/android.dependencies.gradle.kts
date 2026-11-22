@@ -15,7 +15,7 @@ dependencies {
     implementation(libs.findLibrary("androidx-navigation-compose").get())
     implementation(libs.findLibrary("kotlinx-serialization-json").get())
 
-    // Unit testing dependencies
+    // Unit testing
     testRuntimeOnly(libs.findLibrary("junit-platform-launcher").get())
     testImplementation(libs.findBundle("tests").get())
 }
