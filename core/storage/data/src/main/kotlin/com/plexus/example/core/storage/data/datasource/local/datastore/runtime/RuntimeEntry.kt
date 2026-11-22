@@ -5,5 +5,5 @@ data class RuntimeEntry<T>(
     val savingTimeNanos: Long,
     val expirationTimeNanos: Long,
 ) {
-    fun isExpired() = (System.nanoTime() - savingTimeNanos) > expirationTimeNanos
+    fun isExpired(now: Long = System.nanoTime()) = (now - savingTimeNanos) > expirationTimeNanos
 }

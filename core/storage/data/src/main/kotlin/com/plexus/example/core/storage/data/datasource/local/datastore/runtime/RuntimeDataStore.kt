@@ -21,10 +21,10 @@ class RuntimeDataStore {
         }
     }
 
-    fun <T : Any> get(key: String, type: Class<T>): T? = synchronized(storageMap) {
+    fun <T : Any> get(key: String, type: Class<T>, now: Long = System.nanoTime()): T? = synchronized(storageMap) {
         val entry = storageMap[key] ?: return@synchronized null
 
-        if (entry.isExpired()) {
+        if (entry.isExpired(now)) {
             storageMap.remove(key, entry)
             null
         } else {

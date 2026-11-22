@@ -47,15 +47,16 @@ class RuntimeDataStoreTest {
         dataStore.save(
             key = "key",
             value = "expired",
-            expirationTimeNanos = TimeUnit.SECONDS.toNanos(1),
-            savingTimeNanos = System.nanoTime() - TimeUnit.MINUTES.toNanos(1),
+            expirationTimeNanos = TimeUnit.MINUTES.toNanos(5),
+            savingTimeNanos = 0L,
         )
 
         // WHEN
-        val result = dataStore.get("key", String::class.java)
+        val result = dataStore.get("key", String::class.java, now = TimeUnit.SECONDS.toNanos(301))
 
         // THEN
         assertNull(result)
+        assertEquals(0, dataStore.size)
     }
 
     @Test
@@ -64,15 +65,26 @@ class RuntimeDataStoreTest {
         dataStore.save(
             key = "key",
             value = "value",
-            expirationTimeNanos = TimeUnit.HOURS.toNanos(1),
-            savingTimeNanos = System.nanoTime() - TimeUnit.MINUTES.toNanos(1),
+            expirationTimeNanos = TimeUnit.MINUTES.toNanos(5),
+            savingTimeNanos = 0L,
         )
 
         // WHEN
-        val result = dataStore.get("key", String::class.java)
+        val result = dataStore.get("key", String::class.java, now = TimeUnit.SECONDS.toNanos(299))
 
         // THEN
         assertEquals("value", result)
+    }
+
+    @Test
+    fun `GIVEN a five minute entry, WHEN reading at the boundary and after it, THEN expires without renewing on read`() {
+        dataStore.save("key", "value", TimeUnit.MINUTES.toNanos(5), savingTimeNanos = 0L)
+
+        assertEquals("value", dataStore.get("key", String::class.java, now = TimeUnit.SECONDS.toNanos(299)))
+        assertEquals("value", dataStore.get("key", String::class.java, now = TimeUnit.SECONDS.toNanos(300)))
+        assertNull(dataStore.get("key", String::class.java, now = TimeUnit.SECONDS.toNanos(301)))
+        assertEquals(0, dataStore.size)
+        assertNull(dataStore.get("key", String::class.java, now = 0L))
     }
 
     @Test

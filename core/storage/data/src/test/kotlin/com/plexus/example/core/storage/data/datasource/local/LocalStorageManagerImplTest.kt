@@ -36,34 +36,34 @@ class LocalStorageManagerImplTest {
     fun `GIVEN a stored value, WHEN get is called, THEN returns the value from the data store`() {
         // GIVEN
         val value = Any()
-        every { dataStore.get("key", Any::class.java) } returns value
+        every { dataStore.get("key", Any::class.java, any()) } returns value
 
         // WHEN
         val result = manager.get("key", Any::class.java)
 
         // THEN
         assertSame(value, result)
-        verify(exactly = 1) { dataStore.get("key", Any::class.java) }
+        verify(exactly = 1) { dataStore.get("key", Any::class.java, any()) }
     }
 
     @Test
     fun `GIVEN a missing value, WHEN get is called, THEN returns null`() {
         // GIVEN
-        every { dataStore.get("missing", String::class.java) } returns null
+        every { dataStore.get("missing", String::class.java, any()) } returns null
 
         // WHEN
         val result = manager.get("missing", String::class.java)
 
         // THEN
         assertNull(result)
-        verify(exactly = 1) { dataStore.get("missing", String::class.java) }
+        verify(exactly = 1) { dataStore.get("missing", String::class.java, any()) }
     }
 
     @Test
     fun `GIVEN a data store type error, WHEN get is called, THEN propagates the exception`() {
         // GIVEN
         val exception = ClassCastException("Incorrect type")
-        every { dataStore.get("key", String::class.java) } throws exception
+        every { dataStore.get("key", String::class.java, any()) } throws exception
 
         // WHEN
         val result = assertThrows(ClassCastException::class.java) {
@@ -72,6 +72,6 @@ class LocalStorageManagerImplTest {
 
         // THEN
         assertSame(exception, result)
-        verify(exactly = 1) { dataStore.get("key", String::class.java) }
+        verify(exactly = 1) { dataStore.get("key", String::class.java, any()) }
     }
 }
