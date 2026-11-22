@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -28,7 +30,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.SubcomposeAsyncImage
@@ -74,6 +78,11 @@ internal fun DigiviceSearchScreen(
 @Composable
 private fun TopSearch(onClickSearch: (String) -> Unit) {
     var searchText by rememberSaveable { mutableStateOf("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val performSearch: () -> Unit = {
+        keyboardController?.hide()
+        onClickSearch(searchText)
+    }
 
     OutlinedTextField(
         value = searchText,
@@ -83,8 +92,10 @@ private fun TopSearch(onClickSearch: (String) -> Unit) {
             .padding(Spacing.spacing_04),
         label = { Text(stringResource(R.string.digivice_search_name)) },
         singleLine = true,
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardActions = KeyboardActions(onSearch = { performSearch() }),
         trailingIcon = {
-            IconButton(onClick = { onClickSearch(searchText) }) {
+            IconButton(onClick = performSearch) {
                 Icon(
                     imageVector = Icons.Filled.Search,
                     contentDescription = stringResource(R.string.digivice_search_button),
