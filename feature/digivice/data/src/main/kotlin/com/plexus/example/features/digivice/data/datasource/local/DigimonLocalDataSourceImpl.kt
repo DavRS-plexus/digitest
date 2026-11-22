@@ -17,7 +17,7 @@ internal class DigimonLocalDataSourceImpl(
     override suspend fun searchDigimon(name: String): DigimonSearchDataModel? {
         return try {
             localStorageManager.get(key(name), DigimonSearchDataModel::class.java)
-        } catch (_: IllegalStateException) {
+        } catch (_: ClassCastException) {
             null
         }
     }

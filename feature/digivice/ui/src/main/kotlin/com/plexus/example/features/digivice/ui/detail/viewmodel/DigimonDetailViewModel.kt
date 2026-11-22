@@ -38,7 +38,7 @@ internal class DigimonDetailViewModel(
             getDigimonDetailUseCase(id).collect { result ->
                 when (result) {
                     is Either.Success -> handleSuccessGetDigimonDetail(result.data)
-                    is Either.Failure -> handleFailureGetDigimonList(result.fail)
+                    is Either.Failure -> handleFailureGetDigimonDetail(result.fail)
                 }
             }
         }
@@ -48,7 +48,7 @@ internal class DigimonDetailViewModel(
         _uiState.value = DigimonDetailUiState(isLoading = false, detail = detail.toUi())
     }
 
-    private fun handleFailureGetDigimonList(errorModel: ErrorDomainModel) {
+    private fun handleFailureGetDigimonDetail(errorModel: ErrorDomainModel) {
         _uiState.value = DigimonDetailUiState(isLoading = false, errorMessage = errorModel.message)
     }
 }

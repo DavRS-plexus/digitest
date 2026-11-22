@@ -14,7 +14,7 @@ class RuntimeDataStore {
         val entry = storageMap[key] ?: return null
 
         return if (entry.isExpired()) {
-            storageMap.remove(key)
+            storageMap.remove(key, entry)
             null
         } else {
             type.cast(entry.data)
