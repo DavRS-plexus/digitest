@@ -8,6 +8,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 
+//TODO:REVIEW
 /**
  * Instrumented test, which will execute on an Android device.
  *
