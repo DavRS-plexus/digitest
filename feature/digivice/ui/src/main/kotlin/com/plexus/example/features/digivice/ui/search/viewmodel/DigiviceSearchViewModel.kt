@@ -33,10 +33,11 @@ internal class DigiviceSearchViewModel(
     val uiEvent = _uiEvent.asSharedFlow()
 
     private var searchJob: Job? = null
-    private var oldQuery: String = ""
+    private var oldQuery: String? = null
 
 
     init {
+        oldQuery = ""
         getDigimonList()
     }
 
@@ -59,6 +60,7 @@ internal class DigiviceSearchViewModel(
     }
 
     private fun handleFailureGetDigimonList(errorModel: ErrorDomainModel) {
+        oldQuery = null
         _uiState.value = DigiviceSearchUiState(isLoading = false, errorMessage = errorModel.message)
     }
 

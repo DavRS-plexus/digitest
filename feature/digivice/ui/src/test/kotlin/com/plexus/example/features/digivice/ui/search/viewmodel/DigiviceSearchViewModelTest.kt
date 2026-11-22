@@ -143,6 +143,79 @@ class DigiviceSearchViewModelTest {
     }
 
     @Test
+    fun `GIVEN a failed search, WHEN searching the same name again, THEN retries and displays the result`() = runTest {
+        // GIVEN
+        val digimons = DigimonListDomainModel(listOf(DigimonOverviewDomainModel("1", "Agumon", "image")))
+        coEvery { getDigimonListUseCase() } returns flowOf(Either.Success(emptyList()))
+        coEvery { searchDigimonUseCase("Agumon") } returnsMany listOf(
+            flowOf(Either.Failure(ErrorDomainModel(500, "Search failed"))),
+            flowOf(Either.Success(digimons)),
+        )
+        viewModel = createViewModel()
+        advanceUntilIdle()
+        viewModel.onAction(DigiviceSearchViewModel.UserAction.OnClickSearch("Agumon"))
+        advanceUntilIdle()
+        assertEquals(DigiviceSearchUiState(isLoading = false, errorMessage = "Search failed"), viewModel.uiState.value)
+
+        // WHEN
+        viewModel.onAction(DigiviceSearchViewModel.UserAction.OnClickSearch(" Agumon "))
+        val loading = viewModel.uiState.value
+        advanceUntilIdle()
+
+        // THEN
+        assertEquals(DigiviceSearchUiState(isLoading = true), loading)
+        assertEquals(
+            DigiviceSearchUiState(isLoading = false, items = listOf(DigimonItemUiModel("1", "Agumon", "image"))),
+            viewModel.uiState.value,
+        )
+        coVerify(exactly = 2) { searchDigimonUseCase("Agumon") }
+    }
+
+    @Test
+    fun `GIVEN a failed initial list request, WHEN submitting a blank name, THEN retries and displays the list`() = runTest {
+        // GIVEN
+        val digimons = listOf(DigimonOverviewDomainModel("1", "Agumon", "image"))
+        coEvery { getDigimonListUseCase() } returnsMany listOf(
+            flowOf(Either.Failure(ErrorDomainModel(500, "List failed"))),
+            flowOf(Either.Success(digimons)),
+        )
+        viewModel = createViewModel()
+        advanceUntilIdle()
+        assertEquals(DigiviceSearchUiState(isLoading = false, errorMessage = "List failed"), viewModel.uiState.value)
+
+        // WHEN
+        viewModel.onAction(DigiviceSearchViewModel.UserAction.OnClickSearch("  "))
+        val loading = viewModel.uiState.value
+        advanceUntilIdle()
+
+        // THEN
+        assertEquals(DigiviceSearchUiState(isLoading = true), loading)
+        assertEquals(
+            DigiviceSearchUiState(isLoading = false, items = listOf(DigimonItemUiModel("1", "Agumon", "image"))),
+            viewModel.uiState.value,
+        )
+        coVerify(exactly = 2) { getDigimonListUseCase() }
+        coVerify(exactly = 0) { searchDigimonUseCase(any()) }
+    }
+
+    @Test
+    fun `GIVEN a successful list request, WHEN submitting a blank name, THEN does not reload the list`() = runTest {
+        // GIVEN
+        coEvery { getDigimonListUseCase() } returns flowOf(Either.Success(emptyList()))
+        viewModel = createViewModel()
+        advanceUntilIdle()
+
+        // WHEN
+        viewModel.onAction(DigiviceSearchViewModel.UserAction.OnClickSearch("  "))
+        advanceUntilIdle()
+
+        // THEN
+        assertEquals(DigiviceSearchUiState(isLoading = false), viewModel.uiState.value)
+        coVerify(exactly = 1) { getDigimonListUseCase() }
+        coVerify(exactly = 0) { searchDigimonUseCase(any()) }
+    }
+
+    @Test
     fun `GIVEN an active search, WHEN searching the same trimmed name, THEN keeps the request running`() = runTest {
         // GIVEN
         val response = CompletableDeferred<DigimonListDomainModel>()
