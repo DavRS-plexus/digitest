@@ -30,3 +30,6 @@ jobs:
 
       - name: Build debug app
         run: bash ./gradlew :app:assembleDebug --console=plain
+
+      - name: Build instrumented tests
+        run: bash ./gradlew assembleDebugAndroidTest --console=plain

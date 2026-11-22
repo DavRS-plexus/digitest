@@ -35,30 +35,6 @@ El proyecto incluye el Gradle Wrapper, que descarga Gradle **9.9.1** automática
 
 Android Studio configura la ruta del SDK en `local.properties`. Este archivo es local y no debe subirse al repositorio.
 
-### Desde PowerShell (Windows)
-
-Ejecuta los comandos desde la raíz del repositorio. Si no has abierto el proyecto en Android Studio, configura la ubicación del SDK mediante `ANDROID_HOME` o un archivo `local.properties` con una entrada como `sdk.dir=C:\\Android\\Sdk`, sustituyendo la ruta por la de tu instalación.
-
-Para generar el APK de desarrollo:
-
-```powershell
-.\gradlew.bat :app:assembleDevDebug
-```
-
-El APK se genera en `app\build\outputs\apk\dev\debug\app-dev-debug.apk` y se firma automáticamente con la clave de depuración.
-
-Para instalarlo en un emulador iniciado o un dispositivo conectado:
-
-```powershell
-.\gradlew.bat :app:installDevDebug
-```
-
-La instalación no abre la aplicación. Puedes abrirla desde el dispositivo o ejecutar lo siguiente si `adb` está disponible en el `PATH` (se encuentra en la carpeta `platform-tools` del SDK):
-
-```powershell
-adb shell am start -n com.plexus.example.digitest.dev/com.plexus.example.ui.MainActivity
-```
-
 ## Manual de uso
 
 La app es compatible para dispositivos Android 9 (api 28) y superior. 
@@ -241,7 +217,7 @@ La CI utiliza **GitHub Actions** y se ejecuta al abrir o actualizar una pull req
 
 | Workflow | Archivo | Comprobaciones |
 |---|---|---|
-| **Build** | `.github/workflows/build.yml` | Compila las variantes `debug` mediante `:app:assembleDebug`. |
+| **Build** | `.github/workflows/build.yml` | Compila la app mediante `:app:assembleDebug` y los tests instrumentados mediante `assembleDebugAndroidTest`. |
 | **Unit tests** | `.github/workflows/unit-tests.yml` | Ejecuta `detekt` y después las pruebas unitarias mediante `test`. |
 
 Si falla la compilación, el análisis estático o alguna prueba, la comprobación correspondiente aparece como fallida en la pull request.
