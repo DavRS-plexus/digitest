@@ -1,6 +1,7 @@
 package com.plexus.example.core.error.data.extensions
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.plexus.example.core.error.data.datasource.remote.model.ErrorDTO
 import com.plexus.example.core.error.data.datasource.remote.model.ErrorResponseDTO
 import com.plexus.example.core.error.data.datasource.remote.model.ExceptionErrorResponseDTO
@@ -22,7 +23,7 @@ fun Response<*>.toErrorResponse(): ErrorResponseDTO {
             error = errorDTO,
             httpCode = code()
         )
-    } catch (e: Exception) {
+    } catch (e: JsonSyntaxException) {
         e.toErrorResponseDTO(code())
     }
 

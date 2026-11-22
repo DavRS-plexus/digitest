@@ -1,6 +1,6 @@
 package com.plexus.example.core.storage.data.datasource.local
 
-import com.plexus.example.core.storage.data.datasource.local.datastore.RuntimeDataStore
+import com.plexus.example.core.storage.data.datasource.local.datastore.runtime.RuntimeDataStore
 
 class LocalStorageManagerImpl(
     private val dataStore: RuntimeDataStore

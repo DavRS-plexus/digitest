@@ -1,0 +1,10 @@
+naming:
+  FunctionNaming:
+    ignoreAnnotated:
+      - Composable
+
+style:
+  MaxLineLength:
+    excludes: &testSources
+      - '**/src/test*/**'
+      - '**/src/androidTest*/**'

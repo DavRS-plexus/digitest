@@ -1,6 +1,5 @@
-package com.plexus.example.core.storage.data.datasource.local.datastore
+package com.plexus.example.core.storage.data.datasource.local.datastore.runtime
 
-import com.plexus.example.core.storage.data.datasource.local.datastore.runtime.RuntimeEntry
 import java.util.concurrent.ConcurrentHashMap
 
 class RuntimeDataStore {
@@ -14,11 +13,11 @@ class RuntimeDataStore {
     fun <T : Any> get(key: String, type: Class<T>): T? {
         val entry = storageMap[key] ?: return null
 
-        if (entry.isExpired()) {
+        return if (entry.isExpired()) {
             storageMap.remove(key)
-            return null
+            null
+        } else {
+            type.cast(entry.data)
         }
-
-        return type.cast(entry.data)
     }
 }

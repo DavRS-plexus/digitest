@@ -41,11 +41,6 @@ class DigimonRemoteDataSourceImplTest {
         dataSource = DigimonRemoteDataSourceImpl(apiService)
     }
 
-    @AfterEach
-    fun tearDown() {
-
-    }
-
     @Test
     fun `GIVEN a successful list response, WHEN getDigimonList is called, THEN returns the data`() = runTest {
         // GIVEN

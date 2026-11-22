@@ -1,5 +1,6 @@
 package com.plexus.example.core.storage.data.datasource.local.datastore
 
+import com.plexus.example.core.storage.data.datasource.local.datastore.runtime.RuntimeDataStore
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertSame
