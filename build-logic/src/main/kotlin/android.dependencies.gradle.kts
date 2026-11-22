@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("config.android")
+    id("io.insert-koin.compiler.plugin")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
@@ -14,13 +16,8 @@ dependencies {
     implementation(libs.findLibrary("kotlinx-serialization-json").get())
 
     // Testing dependencies
-//    testRuntimeOnly(libs.findLibrary("junit-vintage-engine").get())
     testRuntimeOnly(libs.findLibrary("junit-platform-launcher").get())
-    testImplementation(libs.findLibrary("junit-jupiter").get())
-    testImplementation(libs.findLibrary("mockk").get())
-//    testImplementation(libs.findLibrary("kotlin-test").get())
-    testImplementation(libs.findLibrary("kotlinx-coroutines-test").get())
-//    testImplementation(libs.findLibrary("androidx-arch-core-testing").get())
+    testImplementation(libs.findBundle("tests").get())
 }
 
 tasks.withType<Test>().configureEach {

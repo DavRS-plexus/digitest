@@ -1,9 +1,10 @@
 package com.plexus.example.core.network
 
-import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
+import org.koin.plugin.module.dsl.create
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 fun provideHttpClient(): OkHttpClient {
@@ -14,17 +15,16 @@ fun provideHttpClient(): OkHttpClient {
         .build()
 }
 
-
 fun provideConverterFactory(): GsonConverterFactory =
     GsonConverterFactory.create()
 
-// TODO: provide the url from build.gradle
 fun provideRetrofit(
     okHttpClient: OkHttpClient,
-    gsonConverterFactory: GsonConverterFactory
+    gsonConverterFactory: GsonConverterFactory,
+    networkConfig: NetworkConfig,
 ): Retrofit {
     return Retrofit.Builder()
-        .baseUrl("https://digi-api.com/")
+        .baseUrl(networkConfig.baseUrl)
         .client(okHttpClient)
         .addConverterFactory(gsonConverterFactory)
         .build()
@@ -32,7 +32,7 @@ fun provideRetrofit(
 
 
 val networkModule = module {
-    single { provideHttpClient() }
-    single { provideConverterFactory() }
-    single { provideRetrofit(get(),get()) }
+    single { create(::provideHttpClient) }
+    single { create(::provideConverterFactory) }
+    single { create(::provideRetrofit) }
 }

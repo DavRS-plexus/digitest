@@ -40,11 +40,11 @@ include(":core:error:domain")
 include(":core:navigation")
 include(":core:network")
 include(":core:resources")
-include(":core:storage")
 include(":core:storage:data")
 include(":core:theme")
 
 // Features Modules
+include(":feature:home:ui")
 include(":feature:digivice:data")
 include(":feature:digivice:domain")
 include(":feature:digivice:ui")

@@ -14,8 +14,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = true
+        }
+        create("debugMinified") {
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("debug")
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -23,14 +32,18 @@ android {
         }
     }
 
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_11
-//        targetCompatibility = JavaVersion.VERSION_11
-//    }
-
-//    buildFeatures {
-//        compose = true
-//    }
+    flavorDimensions += "environment"
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            buildConfigField("String", "digiapiUrl", "\"https://digi-api.com/\"")
+        }
+        create("pro") {
+            dimension = "environment"
+            buildConfigField("String", "digiapiUrl", "\"https://digi-api.com/\"")
+        }
+    }
 }
 
 dependencies {
@@ -54,17 +67,8 @@ dependencies {
     implementation(project(":core:theme"))
 
     // Features
+    implementation(project(":feature:home:ui"))
     implementation(project(":feature:digivice:data"))
     implementation(project(":feature:digivice:domain"))
     implementation(project(":feature:digivice:ui"))
-
-//    implementation(libs.androidx.activity.compose)
-//    implementation(libs.androidx.core.ktx)
-//    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-//    testImplementation(libs.junit)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.espresso.core)
-//    androidTestImplementation(libs.androidx.junit)
 }

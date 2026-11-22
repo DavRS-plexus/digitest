@@ -1,13 +1,8 @@
 plugins {
-    id("kotlin.library")
+    id("kotlin.data")
 }
 
 dependencies {
-    implementation(libs.retrofit)
-    implementation(libs.gson)
-    implementation(libs.retrofit.converter.gson)
+    // OkHttp
     implementation(libs.okhttp)
-
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
 }

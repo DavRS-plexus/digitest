@@ -16,7 +16,6 @@ val digiviceDataModule = module {
     single<DigimonApiService> {
         get<Retrofit>().create(DigimonApiService::class.java)
     }
-//    single<DigimonApiService>() bind DigimonApiService::class
     single<DigimonRemoteDataSourceImpl>() bind DigimonRemoteDataSource::class
     single<DigimonRepositoryImpl>() bind DigimonRepository::class
     single<DigimonLocalDataSourceImpl>() bind DigimonLocalDataSource::class

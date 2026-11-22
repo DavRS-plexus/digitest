@@ -7,23 +7,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.plexus.example.core.navigation.DigiviceGraph
+import androidx.navigation.navigation
+import com.plexus.example.core.navigation.DigiviceRoot
+import com.plexus.example.core.navigation.HomeGraph
 import com.plexus.example.features.digivice.ui.navigation.digiviceNavGraph
+import com.plexus.example.features.home.ui.navigation.homeNavGraph
 
 @Composable
-fun MainNavHost(
-    innerPadding: PaddingValues,
-    navController: NavHostController,
-    navigationManager: NavigationManager
-) {
+fun MainNavHost(innerPadding: PaddingValues, navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = DigiviceGraph,
+        startDestination = HomeGraph,
         modifier = Modifier
             .fillMaxSize()
             .padding(innerPadding)
     ) {
         // NavGraphs of every feature
-        digiviceNavGraph(navController = navController, navigationManager = navigationManager)
+        homeNavGraph(
+            navController = navController,
+            navigateToDigivice = { navController.navigate(DigiviceRoot) }
+        )
+        digiviceNavGraph(navController = navController)
     }
 }

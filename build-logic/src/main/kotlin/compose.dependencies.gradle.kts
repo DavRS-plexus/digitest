@@ -13,8 +13,6 @@ dependencies {
 
     // Compose
     implementation(platform(libs.findLibrary("androidx-compose-bom").get()))
-    implementation(libs.findLibrary("androidx-compose-material-icons-core").get())
-    implementation(libs.findLibrary("androidx-compose-ui-tooling-preview").get())
-    implementation(libs.findLibrary("androidx-compose-material3").get())
+    implementation(libs.findBundle("compose").get())
     debugImplementation(libs.findLibrary("androidx-compose-ui-tooling").get())
 }

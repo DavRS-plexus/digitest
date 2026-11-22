@@ -1,5 +1,6 @@
 plugins {
     id("kotlin.library")
+    id("io.insert-koin.compiler.plugin")
 }
 
 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
