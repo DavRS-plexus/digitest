@@ -23,7 +23,7 @@ class RuntimeEntryTest {
         // GIVEN
         val entry = RuntimeEntry(
             data = "value",
-            saveTimeNanos = (System.nanoTime() - TimeUnit.MINUTES.toNanos(1)),
+            savingTimeNanos = (System.nanoTime() - TimeUnit.MINUTES.toNanos(1)),
             expirationTimeNanos = TimeUnit.SECONDS.toNanos(1)
         )
 

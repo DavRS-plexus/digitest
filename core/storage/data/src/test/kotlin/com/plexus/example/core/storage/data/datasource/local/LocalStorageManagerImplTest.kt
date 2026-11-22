@@ -23,13 +23,13 @@ class LocalStorageManagerImplTest {
     fun `GIVEN a value and expiration, WHEN save is called, THEN the value is saved`() {
         // GIVEN
         val value = Any()
-        every { dataStore.save("key", value, 123L) } returns Unit
+        every { dataStore.save("key", value, 123L, any()) } returns Unit
 
         // WHEN
         manager.save("key", value, 123L)
 
         // THEN
-        verify(exactly = 1) { dataStore.save("key", value, 123L) }
+        verify(exactly = 1) { dataStore.save("key", value, 123L, any()) }
     }
 
     @Test

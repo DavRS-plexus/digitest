@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val TIMEOUT_READ_SECONDS = 60
-private const val TIMEOUT_CONNECT_SECONDS = 60
+private const val TIMEOUT_READ_SECONDS = 15
+private const val TIMEOUT_CONNECT_SECONDS = 15
 
 fun provideHttpClient(): OkHttpClient {
     return OkHttpClient

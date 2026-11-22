@@ -12,9 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -26,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -44,6 +47,7 @@ import com.plexus.example.core.theme.dimen.Spacing
 import com.plexus.example.core.theme.font.LocalTypography
 import com.plexus.example.features.digivice.ui.search.model.DigimonItemUiModel
 import com.plexus.example.features.digivice.ui.search.state.DigiviceSearchUiState
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun DigiviceSearchScreen(
@@ -51,12 +55,20 @@ internal fun DigiviceSearchScreen(
     onClickItem: (digimonId: String) -> Unit,
     onClickSearch: (name: String) -> Unit,
 ) {
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = LocalCustomColors.current.background)
     ) {
-        TopSearch(onClickSearch = onClickSearch)
+        TopSearch(onClickSearch = { name ->
+            onClickSearch(name)
+            coroutineScope.launch {
+                listState.scrollToItem(0)
+            }
+        })
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -68,6 +80,7 @@ internal fun DigiviceSearchScreen(
                 else -> StateSuccess(
                     items = uiState.items,
                     isLoading = uiState.isLoading,
+                    listState = listState,
                     onClickItem = onClickItem,
                 )
             }
@@ -132,9 +145,13 @@ private fun StateEmpty() {
 private fun StateSuccess(
     items: List<DigimonItemUiModel>,
     isLoading: Boolean,
+    listState: LazyListState,
     onClickItem: (digimonId: String) -> Unit,
 ) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        state = listState,
+    ) {
         if (isLoading) {
             item {
                 Box(
