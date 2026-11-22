@@ -188,6 +188,23 @@ Los tests siguen la estructura **Given / When / Then**.
 
 ## Extras
 
+### Convention Plugins
+
+La configuración compartida de Gradle se encuentra en **`build-logic`**.
+
+Los **Convention Plugins** agrupan configuraciones y dependencias comunes para evitar repetirlas en cada módulo y mantener criterios de compilación consistentes. Esta agrupación unida al uso del catálogo de veriones(`libs.versions.toml`) posibilita que la configuración de las dependencias de los módulos sea extremadamente simple, reduciendo la duplicación y permitiendo modificar una configuración común desde un único lugar.
+
+| Plugin | Responsabilidad |
+|---|---|
+| `config.android` | Configuración común para aplicaciones y librerías Android: SDK 37.1, SDK mínimo 28, generación de `BuildConfig` y runner de pruebas instrumentadas. |
+| `config.compose` | Activa Compose y aplica su plugin de compilador a los módulos Android. |
+| `config.kotlin` | Configura Kotlin/JVM y Java con destino JVM 17, dependencias de pruebas y ejecución con JUnit Platform. |
+| `kotlin.library` | Aplica `config.kotlin` y añade corrutinas. |
+| `kotlin.domain` | Extiende `kotlin.library` con Koin y su plugin de compilador. |
+| `kotlin.data` | Extiende `kotlin.library` con Koin, anotaciones JVM, Retrofit, Gson y el convertidor Gson. |
+| `android.dependencies` | Configura una librería Android con Koin, serialización, Navigation Compose y herramientas de pruebas unitarias. |
+| `compose.dependencies` | Configura una librería Android con Compose, su BOM, dependencias visuales, integración con Koin y tooling para la variante `debug`. |
+
 ### Análisis estático con Detekt
 El proyecto utiliza **Detekt** para detectar problemas de estilo, complejidad y mantenibilidad en el código.
 La configuración compartida está en `config/detekt/detekt.yml`.
@@ -240,3 +257,8 @@ El objetivo de `debugMinified` es comprobar el comportamiento de la aplicación 
 
 `matchingFallbacks` permite que `debugMinified` utilice la variante `debug` de los módulos dependientes que no disponen de ese tipo de compilación.
 
+### Modo claro/oscuro
+
+La aplicación adapta su tema a la configuración del dispositivo mediante `isSystemInDarkTheme()`. No dispone de un selector propio: utiliza el modo claro u oscuro elegido en Android.
+
+La configuración se centraliza en `AppTheme`, dentro del módulo `core:theme`, y se aplica desde `MainActivity` a toda la interfaz Compose.
