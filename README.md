@@ -190,6 +190,12 @@ La navegación utiliza **Navigation Compose con rutas tipadas**.
 
 Los tests siguen la estructura **Given / When / Then**.
 
+### Tests de instrumentación
+
+- **Compose UI Test** y **JUnit 4:** comprobación de pantallas y sus interacciones.
+
+Cada prueba renderiza la pantalla de forma aislada proporcionando estados y callbacks controlados, sin consultar la API real.
+
 ## Extras
 
 ### Convention Plugins
