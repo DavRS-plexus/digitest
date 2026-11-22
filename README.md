@@ -207,7 +207,7 @@ Los **Convention Plugins** agrupan configuraciones y dependencias comunes para e
 | `kotlin.domain` | Extiende `kotlin.library` con Koin y su plugin de compilador. |
 | `kotlin.data` | Extiende `kotlin.library` con Koin, anotaciones JVM, Retrofit, Gson y el convertidor Gson. |
 | `android.dependencies` | Configura una librería Android con Koin, serialización, Navigation Compose y herramientas de pruebas unitarias. |
-| `compose.dependencies` | Configura una librería Android con Compose, su BOM, dependencias visuales, integración con Koin y tooling para la variante `debug`. |
+| `compose.dependencies` | Configura una librería Android con Compose, su BOM, dependencias visuales, integración con Koin, tooling para la variante `debug` y herramientas de pruebas instrumentadas con Compose. |
 
 ### Análisis estático con Detekt
 El proyecto utiliza **Detekt** para detectar problemas de estilo, complejidad y mantenibilidad en el código.
