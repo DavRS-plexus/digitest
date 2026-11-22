@@ -62,7 +62,7 @@ adb shell am start -n com.plexus.example.digitest.dev/com.plexus.example.ui.Main
 ## Manual de uso
 
 La app es compatible para dispositivos Android 9 (api 28) y superior. 
-Esto cubre el 97% de dispositivos (https://composables.com/android-distribution-chart).
+Esto cubre el 97% de dispositivos (https://composables.com/android-distribution-chart) a fecha 22/11/2026.
 
 La app consta de 2 secciones:
 
@@ -76,7 +76,7 @@ Esta sección contiene 2 pantallas
 
 #### Pantalla Listado
 
-1. Al entrar a esta pantalla, se realiza una petición inicial para obtener un listado de todos los Digimon (limitado a 20 resultados). Esta petición nunca se cachea.
+1. Al entrar a esta pantalla, se realiza una petición para obtener un listado inicial de hasta 20 Digimon (paginación limitada a 20 resultados). Esta petición nunca se cachea.
 2. El usuario puede buscar "por nombre", introduciendo un texto en el buscador y haciendo click sobre la lupa del teclado o pantalla. Esta petición sí se cachea.
 3. La app mostrará los Digimon con nombres parecidos al texto que haya escrito el usuario.
 4. Si el usuario introduce una búsqueda en blanco, se realiza la misma petición que en el primer punto. Sin caché.
@@ -110,7 +110,7 @@ https://github.com/user-attachments/assets/1276abd4-5d00-4e86-a57c-3be1572c052f
 * Si la consulta coincide con la última aceptada(y exitosa) no se ejecuta la búsqueda.
 * Cuando una consulta falla, se limpia la referencia a la última búsqueda para permitir reintentar el mismo texto.
 * Al enviar una consulta vacía, se recupera el listado inicial.
-* Con cada petición de búsqueda del usuario, se cancela el job de la anterior petición.
+* Con cada petición diferente de búsqueda del usuario, se cancela el job de la anterior petición.
 
 ## Arquitectura
 El proyecto utiliza una arquitectura multimódulo, organizada por funcionalidades y capas, siguiendo principios de Clean Architecture. La presentación utiliza MVVM con Jetpack Compose.
